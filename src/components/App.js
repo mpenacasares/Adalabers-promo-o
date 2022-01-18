@@ -11,6 +11,7 @@ function App() {
 
   //  Bonus
   const [searchName, setSearchName] = useState("");
+  const [searchCounselor, setSearchCounselor] = useState("");
 
   //  funciones manejadoras
   const handleNewAdalaberForm = (ev) => {
@@ -44,6 +45,10 @@ function App() {
     setSearchName(ev.currentTarget.value);
   };
 
+  const handleSearchCounselor = (ev) => {
+    setSearchCounselor(ev.currentTarget.value);
+  };
+
   // render html
   const htmlContact = data
     .filter((contact) =>
@@ -64,7 +69,7 @@ function App() {
       <header className="header">
         <h1 className="header__title">Adalabers</h1>
         <form onSubmit={handleNewAdalaberForm}>
-          <label htmlFor="name">Nombre:</label>
+          <label htmlFor="searchName">Nombre:</label>
           <input
             className="header__name"
             type="text"
@@ -73,6 +78,17 @@ function App() {
             onChange={handleSearchName}
             value={searchName}
           />
+          <label htmlFor="searchCounselor">Tutora:</label>
+          <select
+            name="searchCounselor"
+            value={searchCounselor}
+            onChange={handleSearchCounselor}
+          >
+            <option disabled>Todas</option>
+            <option>Yanelis</option>
+            <option>Dayana</option>
+            <option>Iván</option>
+          </select>
         </form>
       </header>
       {/* main */}
