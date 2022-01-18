@@ -8,11 +8,10 @@ function App() {
   const [name, setName] = useState("");
   const [counselor, setCounselor] = useState("");
   const [speciality, setSpeciality] = useState("");
-  const [newAdalaber, setNewAdalaber] = useState({
-    name: "",
-    counselor: "",
-    speciality: "",
-  });
+
+  //  Bonus
+  const [searchName, setSearchName] = useState("");
+
   //  funciones manejadoras
   const handleNewAdalaberForm = (ev) => {
     ev.preventDefault();
@@ -40,28 +39,39 @@ function App() {
     setSpeciality("");
   };
 
+  //  Bonus
+  const handleSearchName = (ev) => {
+    setSearchName(ev.currentTarget.value);
+  };
+
   // render html
-  const htmlContact = data.map((contact, index) => (
-    <tr key={index}>
-      <td className="name">{contact.name}</td>
-      <td className="counselor">{contact.counselor}</td>
-      <td className="speciality">{contact.speciality}</td>
-    </tr>
-  ));
+  const htmlContact = data
+    .filter((contact) =>
+      contact.name.toLowerCase().includes(searchName.toLowerCase())
+    )
+
+    .map((contact, index) => (
+      <tr key={index}>
+        <td className="name">{contact.name}</td>
+        <td className="counselor">{contact.counselor}</td>
+        <td className="speciality">{contact.speciality}</td>
+      </tr>
+    ));
 
   return (
     <div className="page">
       {/* header */}
       <header className="header">
         <h1 className="header__title">Adalabers</h1>
-        <form>
+        <form onSubmit={handleNewAdalaberForm}>
+          <label htmlFor="name">Nombre:</label>
           <input
             className="header__name"
             type="text"
             name="name"
             placeholder="Ej:MariCarmen"
-            // onChange={handleChangeSearch}
-            // value={search}
+            onChange={handleSearchName}
+            value={searchName}
           />
         </form>
       </header>
