@@ -1,6 +1,8 @@
 import "../styles/App.scss";
+import contactList from "../data/contacts.json";
 
 function App() {
+  console.log(contactList);
   return (
     <div>
       {/* <p>Mi código comentado</p> */}
